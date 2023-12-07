@@ -9,6 +9,8 @@ import {
   TextInput,
   View,
 } from 'react-native';
+import QuestionCard from './components/QuestionCard';
+import {questions} from './data/questions';
 
 function App(): JSX.Element {
   return (
@@ -20,15 +22,17 @@ function App(): JSX.Element {
             uri: 'https://mintheinkha-lathtaukbaydin.netlify.app/images/mintheinkha_logo.png',
           }}
         />
-        <Text style={styles.title}>Min Hein Kha </Text>
+        <Text style={styles.title}>Min Thein Kha </Text>
       </View>
       <Text style={styles.searchInputLable}>Search Questions</Text>
       <TextInput style={styles.searchInput} />
 
-      {Array.from({length: 15}).map((_, index) => (
-        <View key={index} style={styles.card}>
-          <Text style={styles.cardText}>HELLLLLLO</Text>
-        </View>
+      {questions.map(question => (
+        <QuestionCard
+          key={question.questionNo}
+          questionNo={question.questionNo}
+          questionName={question.questionName}
+        />
       ))}
     </ScrollView>
   );
@@ -65,7 +69,7 @@ const styles = StyleSheet.create({
 
   searchInputLable: {
     color: '#0B161A',
-    marginHorizontal: 10,
+    marginHorizontal: 20,
     marginTop: 20,
     marginBottom: 8,
   },
@@ -74,22 +78,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#4399BD',
     padding: 8,
-    marginHorizontal: 10,
+    marginHorizontal: 20,
     marginBottom: 10,
     borderRadius: 10,
-    color: '#0B161A',
-  },
-
-  card: {
-    borderWidth: 1,
-    margin: 8,
-    height: 70,
-    borderRadius: 15,
-    borderColor: '#61dafb',
-    padding: 10,
-    backgroundColor: '#9BCBDE',
-  },
-  cardText: {
     color: '#0B161A',
   },
 });
