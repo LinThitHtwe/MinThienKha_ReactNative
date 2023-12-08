@@ -1,20 +1,22 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 
 interface QuestionCardProps {
   questionNo: number;
   questionName: string;
 }
-
 const QuestionCard = ({
   questionNo,
   questionName,
-}: QuestionCardProps): JSX.Element => {
+  navigation,
+}: QuestionCardProps & {navigation: any}): JSX.Element => {
   return (
-    <View style={styles.card}>
+    <TouchableOpacity
+      style={styles.card}
+      onPress={() => navigation.navigate('Home2')}>
       <Text style={styles.cardText}>
         {questionNo} . {questionName}
       </Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
