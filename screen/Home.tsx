@@ -14,7 +14,6 @@ const Home = ({navigation}: {navigation: any}): JSX.Element => {
     <ScrollView style={styles.mainContainer}>
       <Text style={styles.searchInputLable}>Search Questions</Text>
       <TextInput style={styles.searchInput} />
-      {/* <Button title="Home2" onPress={() => navigation.navigate('Home2')} /> */}
       {questions.map(question => (
         <QuestionCard
           key={question.questionNo}

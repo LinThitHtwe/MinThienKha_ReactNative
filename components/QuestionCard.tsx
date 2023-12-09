@@ -12,7 +12,7 @@ const QuestionCard = ({
   return (
     <TouchableOpacity
       style={styles.card}
-      onPress={() => navigation.navigate('Home2')}>
+      onPress={() => navigation.navigate('PickNumber')}>
       <Text style={styles.cardText}>
         {questionNo} . {questionName}
       </Text>
