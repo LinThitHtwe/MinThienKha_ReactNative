@@ -1,13 +1,37 @@
-import {Text, View, StyleSheet, TouchableOpacity, Alert} from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Alert,
+  Button,
+} from 'react-native';
 import {numberList} from '../data/numberList';
 import {useFetchAnswer} from '../hooks/useFetchAnswer';
 
-const PickNumber = ({route}: any): JSX.Element => {
+const PickNumber = ({route, navigation}: any): JSX.Element => {
   const {questionNo, questionName} = route.params;
 
   const handleFortuneNumberClick = (answerNo: string) => {
     const answerResult = useFetchAnswer(questionNo, answerNo);
-    Alert.alert('Answer Result', answerResult);
+    Alert.alert(
+      'Answer Result',
+      answerResult,
+      [
+        {
+          text: 'Go Back to Home',
+          onPress: () => {
+            navigation.navigate('Home');
+          },
+        },
+        {
+          text: 'Try Again',
+          onPress: () => {},
+          style: 'cancel',
+        },
+      ],
+      {cancelable: false},
+    );
   };
 
   return (
@@ -23,6 +47,11 @@ const PickNumber = ({route}: any): JSX.Element => {
           </TouchableOpacity>
         ))}
       </View>
+      <TouchableOpacity
+        style={styles.backBtn}
+        onPress={() => navigation.navigate('Home')}>
+        <Text style={styles.backBtnText}> Back to Home</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -63,6 +92,18 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     height: 38,
     color: '#0B161A',
+  },
+  backBtn: {
+    width: '40%',
+    marginTop: 60,
+    backgroundColor: '#7bb7d1',
+    padding: 8,
+    borderRadius: 10,
+  },
+  backBtnText: {
+    color: '#0B161A',
+    fontWeight: '300',
+    textAlign: 'center',
   },
 });
 
