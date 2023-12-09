@@ -15,17 +15,17 @@ const PickNumber = ({route, navigation}: any): JSX.Element => {
   const handleFortuneNumberClick = (answerNo: string) => {
     const answerResult = useFetchAnswer(questionNo, answerNo);
     Alert.alert(
-      'Answer Result',
+      'လက်ထောက်အဖြေ',
       answerResult,
       [
         {
-          text: 'Go Back to Home',
+          text: 'အခြားမေးခွန်းများသို့',
           onPress: () => {
             navigation.navigate('Home');
           },
         },
         {
-          text: 'Try Again',
+          text: 'ပြန်ထောက်ရန်',
           onPress: () => {},
           style: 'cancel',
         },
@@ -50,7 +50,7 @@ const PickNumber = ({route, navigation}: any): JSX.Element => {
       <TouchableOpacity
         style={styles.backBtn}
         onPress={() => navigation.navigate('Home')}>
-        <Text style={styles.backBtnText}> Back to Home</Text>
+        <Text style={styles.backBtnText}>ပြန်သွားရန်</Text>
       </TouchableOpacity>
     </View>
   );

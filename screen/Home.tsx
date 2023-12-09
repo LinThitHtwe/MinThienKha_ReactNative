@@ -8,15 +8,53 @@ import {
 } from 'react-native';
 import {questions} from '../data/questions';
 import QuestionCard from '../components/QuestionCard';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
+
+type Question = {
+  questionNo: number;
+  questionName: string;
+};
+
 const Home = ({navigation}: {navigation: any}): JSX.Element => {
+  const totalPages = Math.floor(questions.length / 10);
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
-  const filteredQuestions = questions
-    .filter(question =>
-      question.questionName.toLowerCase().includes(searchQuery.toLowerCase()),
-    )
-    .slice(0, 8);
+  const [filteredQuestions, setFilteredQuestions] = useState<Array<Question>>(
+    [],
+  );
+
+  useEffect(() => {
+    const filtered = questions
+      .filter(question =>
+        question.questionName.toLowerCase().includes(searchQuery.toLowerCase()),
+      )
+      .slice(currentPage - 1, currentPage + 9);
+
+    setFilteredQuestions(filtered);
+  }, [currentPage, searchQuery]);
+
+  const renderPaginationButtons = () => {
+    const buttons = [];
+    for (let i = 1; i <= totalPages; i++) {
+      buttons.push(
+        <TouchableOpacity
+          key={i}
+          style={i === currentPage ? styles.activePagePagination : null}
+          onPress={() => setCurrentPage(i)}>
+          <Text
+            style={
+              i === currentPage
+                ? styles.activePagePaginationText
+                : styles.paginationPageNumberText
+            }>
+            {i}
+          </Text>
+        </TouchableOpacity>,
+      );
+    }
+
+    return buttons;
+  };
 
   return (
     <View style={styles.mainContainer}>
@@ -46,7 +84,7 @@ const Home = ({navigation}: {navigation: any}): JSX.Element => {
             justifyContent: 'space-between',
           }}>
           <TouchableOpacity style={styles.prevAndNextBtn}>
-            <Text style={styles.prevAndNextText}>Prev</Text>
+            <Text style={styles.prevAndNextText}>နောက်သို့</Text>
           </TouchableOpacity>
           <View style={styles.paginationContainer}>
             <TouchableOpacity style={styles.activePagePagination}>
@@ -59,9 +97,12 @@ const Home = ({navigation}: {navigation: any}): JSX.Element => {
             <TouchableOpacity>
               <Text style={styles.paginationPageNumberText}>3</Text>
             </TouchableOpacity>
+            <TouchableOpacity>
+              <Text style={styles.paginationPageNumberText}>•••</Text>
+            </TouchableOpacity>
           </View>
           <TouchableOpacity style={styles.prevAndNextBtn}>
-            <Text style={styles.prevAndNextText}>Next</Text>
+            <Text style={styles.prevAndNextText}>ရှေ့သို့</Text>
           </TouchableOpacity>
         </View>
       </ScrollView>
