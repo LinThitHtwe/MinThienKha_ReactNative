@@ -71,6 +71,7 @@ const styles = StyleSheet.create({
     lineHeight: 25,
     fontSize: 18,
     marginVertical: 20,
+    fontWeight: '800',
   },
 
   numberPickBoxContainer: {

@@ -11,7 +11,6 @@ import {
 } from 'react-native';
 
 import Home from './screen/Home';
-import Home2 from './screen/Home2';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import CustomHeader from './components/CustomHeader';

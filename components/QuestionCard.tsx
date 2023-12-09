@@ -24,13 +24,13 @@ const QuestionCard = ({
 
 const styles = StyleSheet.create({
   card: {
-    borderWidth: 1,
+    borderWidth: 0.5,
     marginHorizontal: 20,
     marginVertical: 6,
     minHeight: 40,
     maxHeight: 'auto',
     borderRadius: 15,
-    borderColor: '#61dafb',
+    borderColor: '#8cc3d9',
     padding: 10,
     backgroundColor: '#9BCBDE',
     alignItems: 'center',
