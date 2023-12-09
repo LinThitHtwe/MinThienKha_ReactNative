@@ -1,16 +1,24 @@
-import {Text, View, StyleSheet, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import {numberList} from '../data/numberList';
+import {useFetchAnswer} from '../hooks/useFetchAnswer';
 
-const PickNumber = (): JSX.Element => {
+const PickNumber = ({route}: any): JSX.Element => {
+  const {questionNo, questionName} = route.params;
+
+  const handleFortuneNumberClick = (answerNo: string) => {
+    const answerResult = useFetchAnswer(questionNo, answerNo);
+    Alert.alert('Answer Result', answerResult);
+  };
+
   return (
     <View style={styles.mainContainer}>
-      <Text style={styles.questionText}>
-        မိမိ၏ကံဇာတာအညံ့များ ပြေပျောက်ရန်အတွက်လည်းကောင်း၊ လိုအင်ဆန္ဒများ
-        ပြည့်ရန်အတွက်လည်းကောင်း ယတြာချေခြင်းနှင့် ဆိုင်သော အဟော။
-      </Text>
+      <Text style={styles.questionText}>{questionName}</Text>
       <View style={styles.numberPickBoxContainer}>
         {numberList.map((number, index) => (
-          <TouchableOpacity key={index} style={styles.gridItem}>
+          <TouchableOpacity
+            key={index}
+            style={styles.gridItem}
+            onPress={() => handleFortuneNumberClick(number)}>
             <Text style={styles.numberBlock}>{number}</Text>
           </TouchableOpacity>
         ))}
@@ -54,6 +62,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     borderRadius: 5,
     height: 38,
+    color: '#0B161A',
   },
 });
 

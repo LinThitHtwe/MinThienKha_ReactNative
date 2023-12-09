@@ -9,7 +9,7 @@ const CustomHeader = (): JSX.Element => {
           uri: 'https://mintheinkha-lathtaukbaydin.netlify.app/images/mintheinkha_logo.png',
         }}
       />
-      <Text style={styles.navTitle}>Min Thein Kha </Text>
+      <Text style={styles.navTitle}>မင်းသိင်္ခ/လက်ထောက်ဗေဒင်</Text>
     </View>
   );
 };
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   navTitle: {
     color: '#0B161A',
     textAlign: 'center',
-    fontSize: 25,
+    fontSize: 22,
     fontWeight: '500',
     marginHorizontal: 6,
   },
