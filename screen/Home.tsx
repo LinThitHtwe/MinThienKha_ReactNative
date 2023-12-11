@@ -111,39 +111,39 @@ const Home = ({navigation}: {navigation: any}): JSX.Element => {
             navigation={navigation}
           />
         ))}
-        <View
-          style={{
-            height: 80,
-            paddingVertical: 20,
-            paddingHorizontal: 10,
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}>
-          <TouchableOpacity
-            style={
-              currentPage === 1
-                ? styles.disablePrevNextBtn
-                : styles.prevAndNextBtn
-            }
-            onPress={() => setCurrentPage(currentPage - 1)}
-            disabled={currentPage == 1}>
-            <Text style={styles.prevAndNextText}>နောက်သို့</Text>
-          </TouchableOpacity>
-          <View style={styles.paginationContainer}>
-            {renderPaginationButtons()}
-          </View>
-          <TouchableOpacity
-            style={
-              currentPage === totalPages
-                ? styles.disablePrevNextBtn
-                : styles.prevAndNextBtn
-            }
-            disabled={currentPage == totalPages}
-            onPress={() => setCurrentPage(currentPage + 1)}>
-            <Text style={styles.prevAndNextText}>ရှေ့သို့</Text>
-          </TouchableOpacity>
-        </View>
       </ScrollView>
+      <View
+        style={{
+          height: 80,
+          paddingVertical: 20,
+          paddingHorizontal: 10,
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+        }}>
+        <TouchableOpacity
+          style={
+            currentPage === 1
+              ? styles.disablePrevNextBtn
+              : styles.prevAndNextBtn
+          }
+          onPress={() => setCurrentPage(currentPage - 1)}
+          disabled={currentPage == 1}>
+          <Text style={styles.prevAndNextText}>နောက်သို့</Text>
+        </TouchableOpacity>
+        <View style={styles.paginationContainer}>
+          {renderPaginationButtons()}
+        </View>
+        <TouchableOpacity
+          style={
+            currentPage === totalPages
+              ? styles.disablePrevNextBtn
+              : styles.prevAndNextBtn
+          }
+          disabled={currentPage == totalPages}
+          onPress={() => setCurrentPage(currentPage + 1)}>
+          <Text style={styles.prevAndNextText}>ရှေ့သို့</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
