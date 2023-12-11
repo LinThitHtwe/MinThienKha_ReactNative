@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import {questions} from '../data/questions';
 import QuestionCard from '../components/QuestionCard';
-import {useEffect, useState} from 'react';
+import {useEffect, useRef, useState} from 'react';
 
 type Question = {
   questionNo: number;
@@ -16,23 +16,30 @@ type Question = {
 };
 
 const Home = ({navigation}: {navigation: any}): JSX.Element => {
-  const totalPages = Math.ceil(questions.length / 10);
+  //const totalPages = Math.ceil(questions.length / 10);
+  const [totalPages, setTotalPages] = useState(
+    Math.ceil(questions.length / 10),
+  );
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredQuestions, setFilteredQuestions] = useState<Array<Question>>(
     [],
   );
+  const prevSearchQueryRef = useRef<string>('');
 
   useEffect(() => {
-    const filtered = questions
-      .filter(question =>
-        question.questionName.toLowerCase().includes(searchQuery.toLowerCase()),
-      )
-      .slice((currentPage - 1) * 10, currentPage * 10);
-
-    setFilteredQuestions(filtered);
+    const filtered = questions.filter(question =>
+      question.questionName.toLowerCase().includes(searchQuery.toLowerCase()),
+    );
+    if (searchQuery !== prevSearchQueryRef.current) {
+      setCurrentPage(1);
+      prevSearchQueryRef.current = searchQuery;
+    }
+    setTotalPages(Math.ceil(filtered.length / 10));
+    setFilteredQuestions(
+      filtered.slice((currentPage - 1) * 10, currentPage * 10),
+    );
   }, [currentPage, searchQuery]);
-
   const renderPaginationButtons = () => {
     return (
       <>
@@ -58,7 +65,7 @@ const Home = ({navigation}: {navigation: any}): JSX.Element => {
             </Text>
           </TouchableOpacity>
         )}
-        {currentPage == 1 && (
+        {currentPage == 1 && totalPages > 1 && (
           <TouchableOpacity onPress={() => setCurrentPage(currentPage + 2)}>
             <Text style={styles.paginationPageNumberText}>
               {currentPage + 2}
