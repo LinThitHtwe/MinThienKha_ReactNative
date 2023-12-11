@@ -44,12 +44,16 @@ const Home = ({navigation}: {navigation: any}): JSX.Element => {
     return (
       <>
         {currentPage > 2 && (
-          <TouchableOpacity onPress={() => setCurrentPage(currentPage - 2)}>
+          <TouchableOpacity
+            style={styles.inActivePaginationContainer}
+            onPress={() => setCurrentPage(currentPage - 2)}>
             <Text style={styles.paginationPageNumberText}>•••</Text>
           </TouchableOpacity>
         )}
         {currentPage - 1 != 0 && (
-          <TouchableOpacity onPress={() => setCurrentPage(currentPage - 1)}>
+          <TouchableOpacity
+            style={styles.inActivePaginationContainer}
+            onPress={() => setCurrentPage(currentPage - 1)}>
             <Text style={styles.paginationPageNumberText}>
               {currentPage - 1}
             </Text>
@@ -59,14 +63,18 @@ const Home = ({navigation}: {navigation: any}): JSX.Element => {
           <Text style={styles.activePagePaginationText}>{currentPage}</Text>
         </TouchableOpacity>
         {currentPage < totalPages && (
-          <TouchableOpacity onPress={() => setCurrentPage(currentPage + 1)}>
+          <TouchableOpacity
+            style={styles.inActivePaginationContainer}
+            onPress={() => setCurrentPage(currentPage + 1)}>
             <Text style={styles.paginationPageNumberText}>
               {currentPage + 1}
             </Text>
           </TouchableOpacity>
         )}
         {currentPage == 1 && totalPages > 1 && (
-          <TouchableOpacity onPress={() => setCurrentPage(currentPage + 2)}>
+          <TouchableOpacity
+            style={styles.inActivePaginationContainer}
+            onPress={() => setCurrentPage(currentPage + 2)}>
             <Text style={styles.paginationPageNumberText}>
               {currentPage + 2}
             </Text>
@@ -74,7 +82,9 @@ const Home = ({navigation}: {navigation: any}): JSX.Element => {
         )}
 
         {currentPage + 1 < totalPages && (
-          <TouchableOpacity>
+          <TouchableOpacity
+            style={styles.inActivePaginationContainer}
+            onPress={() => setCurrentPage(currentPage + 2)}>
             <Text style={styles.paginationPageNumberText}>•••</Text>
           </TouchableOpacity>
         )}
@@ -174,9 +184,17 @@ const styles = StyleSheet.create({
   prevAndNextBtn: {
     backgroundColor: '#9BCBDE',
     width: 60,
+    height: 35,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
+  },
+
+  inActivePaginationContainer: {
+    width: 35,
+    height: 35,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 
   prevAndNextText: {
