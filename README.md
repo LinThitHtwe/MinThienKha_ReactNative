@@ -1,34 +1,47 @@
 ## How the App Works
 
 1. **Browse Questions 📜:**
+
    - View the list of questions available.
    - Utilize the search bar 🔍 to find specific questions quickly.
 
 2. **Pagination Navigation 📄:**
+
    - Navigate through the pagination below the question list for easier exploration.
+
+![Browse Questions](docs/question_list.jpg)
 
 3. **Select a Question 🖱️:**
    - Click on a question to explore further.
 
+![Browse Questions](docs/search_questions.jpg)
+
 4. **Fortune Telling Graph 📊:**
+
    - Upon selecting a question, you will be redirected to a fortune-telling graph.
 
+![Fortune Telling Graph](docs/fortune_grid.jpg)
+
 5. **Choose a Number 🔢:**
+
    - Close your eyes 😌 and click on one of the numbers on the graph.
 
 6. **Receive Answer 🎉:**
+
    - An alert modal will appear, revealing the answer corresponding to the selected number.
 
+![Recieve Answer](docs/answer.jpg)
+
 7. **Retry or Explore 🔄:**
+
    - Decide whether to try again with a different number or go back to the list to explore other questions.
 
 8. **Have Fun 🎉:**
    - Enjoy the experience and have fun with the app!
 
-
 # How to Run the App
 
->**Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
+> **Note**: Make sure you have completed the [React Native - Environment Setup](https://reactnative.dev/docs/environment-setup) instructions till "Creating a new application" step, before proceeding.
 
 ## Step 1: Start the Metro Server
 
@@ -76,7 +89,6 @@ This is one way to run your app — you can also run it directly from within And
 
 You've successfully run and modified Min Thein Kha Fortune-telling App. :partying_face:
 
-
 ## Credit 💡
 
 This project idea comes from [@sannlynnhtun-coding](https://github.com/sannlynnhtun-coding). 🙌
@@ -84,6 +96,3 @@ This project idea comes from [@sannlynnhtun-coding](https://github.com/sannlynnh
 Special Thanks 🌟 to [@sannlynnhtun-coding](https://github.com/sannlynnhtun-coding) for the inspiration and project concept!
 
 The JSON data can be found at [MinTheinKha-LatHtaukBayDin](https://github.com/sannlynnhtun-coding/MinTheinKha-LatHtaukBayDin), where you can try it out for yourself! 🚀
-
-
-
