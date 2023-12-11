@@ -9,18 +9,18 @@
 
    - Navigate through the pagination below the question list for easier exploration.
 
-![Browse Questions](docs/question_list.jpg)
+<img src="docs/question_list.jpg" alt="Browse Questions" height="800">
 
 3. **Select a Question 🖱️:**
    - Click on a question to explore further.
 
-![Browse Questions](docs/search_questions.jpg)
+<img src="docs/search_questions.jpg" alt="Search Questions" height="800">
 
 4. **Fortune Telling Graph 📊:**
 
    - Upon selecting a question, you will be redirected to a fortune-telling graph.
 
-![Fortune Telling Graph](docs/fortune_grid.jpg)
+<img src="docs/fortune_grid.jpg" alt="Fortune Telling Graph" height="800">
 
 5. **Choose a Number 🔢:**
 
@@ -30,7 +30,7 @@
 
    - An alert modal will appear, revealing the answer corresponding to the selected number.
 
-![Recieve Answer](docs/answer.jpg)
+<img src="docs/answer.jpg" alt="Recieve Answer" height="800">
 
 7. **Retry or Explore 🔄:**
 
