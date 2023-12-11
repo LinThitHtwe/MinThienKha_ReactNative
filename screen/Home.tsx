@@ -16,7 +16,7 @@ type Question = {
 };
 
 const Home = ({navigation}: {navigation: any}): JSX.Element => {
-  const totalPages = Math.floor(questions.length / 10);
+  const totalPages = Math.ceil(questions.length / 10);
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
   const [filteredQuestions, setFilteredQuestions] = useState<Array<Question>>(
@@ -28,32 +28,51 @@ const Home = ({navigation}: {navigation: any}): JSX.Element => {
       .filter(question =>
         question.questionName.toLowerCase().includes(searchQuery.toLowerCase()),
       )
-      .slice(currentPage - 1, currentPage + 9);
+      .slice((currentPage - 1) * 10, currentPage * 10);
 
     setFilteredQuestions(filtered);
   }, [currentPage, searchQuery]);
 
   const renderPaginationButtons = () => {
-    const buttons = [];
-    for (let i = 1; i <= totalPages; i++) {
-      buttons.push(
-        <TouchableOpacity
-          key={i}
-          style={i === currentPage ? styles.activePagePagination : null}
-          onPress={() => setCurrentPage(i)}>
-          <Text
-            style={
-              i === currentPage
-                ? styles.activePagePaginationText
-                : styles.paginationPageNumberText
-            }>
-            {i}
-          </Text>
-        </TouchableOpacity>,
-      );
-    }
+    return (
+      <>
+        {currentPage > 2 && (
+          <TouchableOpacity onPress={() => setCurrentPage(currentPage - 2)}>
+            <Text style={styles.paginationPageNumberText}>•••</Text>
+          </TouchableOpacity>
+        )}
+        {currentPage - 1 != 0 && (
+          <TouchableOpacity onPress={() => setCurrentPage(currentPage - 1)}>
+            <Text style={styles.paginationPageNumberText}>
+              {currentPage - 1}
+            </Text>
+          </TouchableOpacity>
+        )}
+        <TouchableOpacity style={styles.activePagePagination}>
+          <Text style={styles.activePagePaginationText}>{currentPage}</Text>
+        </TouchableOpacity>
+        {currentPage < totalPages && (
+          <TouchableOpacity onPress={() => setCurrentPage(currentPage + 1)}>
+            <Text style={styles.paginationPageNumberText}>
+              {currentPage + 1}
+            </Text>
+          </TouchableOpacity>
+        )}
+        {currentPage == 1 && (
+          <TouchableOpacity onPress={() => setCurrentPage(currentPage + 2)}>
+            <Text style={styles.paginationPageNumberText}>
+              {currentPage + 2}
+            </Text>
+          </TouchableOpacity>
+        )}
 
-    return buttons;
+        {currentPage + 1 < totalPages && (
+          <TouchableOpacity>
+            <Text style={styles.paginationPageNumberText}>•••</Text>
+          </TouchableOpacity>
+        )}
+      </>
+    );
   };
 
   return (
@@ -83,25 +102,27 @@ const Home = ({navigation}: {navigation: any}): JSX.Element => {
             flexDirection: 'row',
             justifyContent: 'space-between',
           }}>
-          <TouchableOpacity style={styles.prevAndNextBtn}>
+          <TouchableOpacity
+            style={
+              currentPage === 1
+                ? styles.disablePrevNextBtn
+                : styles.prevAndNextBtn
+            }
+            onPress={() => setCurrentPage(currentPage - 1)}
+            disabled={currentPage == 1}>
             <Text style={styles.prevAndNextText}>နောက်သို့</Text>
           </TouchableOpacity>
           <View style={styles.paginationContainer}>
-            <TouchableOpacity style={styles.activePagePagination}>
-              <Text style={styles.activePagePaginationText}>1</Text>
-            </TouchableOpacity>
-
-            <TouchableOpacity>
-              <Text style={styles.paginationPageNumberText}>2</Text>
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Text style={styles.paginationPageNumberText}>3</Text>
-            </TouchableOpacity>
-            <TouchableOpacity>
-              <Text style={styles.paginationPageNumberText}>•••</Text>
-            </TouchableOpacity>
+            {renderPaginationButtons()}
           </View>
-          <TouchableOpacity style={styles.prevAndNextBtn}>
+          <TouchableOpacity
+            style={
+              currentPage === totalPages
+                ? styles.disablePrevNextBtn
+                : styles.prevAndNextBtn
+            }
+            disabled={currentPage == totalPages}
+            onPress={() => setCurrentPage(currentPage + 1)}>
             <Text style={styles.prevAndNextText}>ရှေ့သို့</Text>
           </TouchableOpacity>
         </View>
@@ -172,6 +193,15 @@ const styles = StyleSheet.create({
   paginationPageNumberText: {
     color: '#9BCBDE',
     fontWeight: '800',
+  },
+
+  disablePrevNextBtn: {
+    backgroundColor: '#9BCBDE',
+    width: 60,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+    opacity: 0.3,
   },
 });
 
