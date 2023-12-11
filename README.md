@@ -87,7 +87,7 @@ This is one way to run your app — you can also run it directly from within And
 
 ## Congratulations! :tada:
 
-You've successfully run and modified Min Thein Kha Fortune-telling App. :partying_face:
+You've successfully run Min Thein Kha Fortune-telling App. :partying_face:
 
 ## Credit 💡
 
