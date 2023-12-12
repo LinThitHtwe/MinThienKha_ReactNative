@@ -1,5 +1,5 @@
 import {
-  ScrollView,
+  FlatList,
   StyleSheet,
   Text,
   TextInput,
@@ -16,7 +16,6 @@ type Question = {
 };
 
 const Home = ({navigation}: {navigation: any}): JSX.Element => {
-  //const totalPages = Math.ceil(questions.length / 10);
   const [totalPages, setTotalPages] = useState(
     Math.ceil(questions.length / 10),
   );
@@ -102,16 +101,18 @@ const Home = ({navigation}: {navigation: any}): JSX.Element => {
         value={searchQuery}
         onChangeText={text => setSearchQuery(text)}
       />
-      <ScrollView>
-        {filteredQuestions.map(question => (
+      <FlatList
+        data={filteredQuestions}
+        renderItem={({item: question}: any) => (
           <QuestionCard
             key={question.questionNo}
             questionNo={question.questionNo}
             questionName={question.questionName}
             navigation={navigation}
           />
-        ))}
-      </ScrollView>
+        )}
+        keyExtractor={question => question.questionNo.toString()}
+      />
       <View
         style={{
           height: 80,

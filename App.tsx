@@ -1,14 +1,4 @@
 import React from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  Image,
-  TextInput,
-  View,
-} from 'react-native';
 
 import Home from './screen/Home';
 import {NavigationContainer} from '@react-navigation/native';
