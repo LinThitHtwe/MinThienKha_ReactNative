@@ -42,7 +42,7 @@ const PickNumber = ({route, navigation}: any): JSX.Element => {
       </View>
       <TouchableOpacity
         style={styles.backBtn}
-        onPress={() => navigation.navigate('Home')}>
+        onPress={() => navigation.canGoBack && navigation.goBack()}>
         <Text style={styles.backBtnText}>ပြန်သွားရန်</Text>
       </TouchableOpacity>
     </View>

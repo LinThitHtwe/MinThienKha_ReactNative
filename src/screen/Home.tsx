@@ -9,11 +9,14 @@ import {
 import {questions} from '../data/questions';
 import QuestionCard from '../components/QuestionCard';
 import {useEffect, useRef, useState} from 'react';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 type Question = {
   questionNo: number;
   questionName: string;
 };
+
+//type Props = NativeStackScreenProps<RootStackParamList, 'Profile'>;
 
 const Home = ({navigation}: {navigation: any}): JSX.Element => {
   const [totalPages, setTotalPages] = useState(
