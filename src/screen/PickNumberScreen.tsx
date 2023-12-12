@@ -1,9 +1,19 @@
 import {Text, View, StyleSheet, TouchableOpacity, Alert} from 'react-native';
 import {numberList} from '../data/numberList';
 import {useFetchAnswer} from '../hooks/useFetchAnswer';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import {RootStackParamsList} from '../navigations/type';
+import {FC} from 'react';
 
-const PickNumber = ({route, navigation}: any): JSX.Element => {
-  const {questionNo, questionName} = route.params;
+type Props = NativeStackScreenProps<RootStackParamsList, 'PickNumberScreen'>;
+
+type Questions = {
+  questionNo: number;
+  questionName: string;
+};
+
+const PickNumberScreen: FC<Props> = ({route, navigation}): JSX.Element => {
+  const {questionNo, questionName}: Questions = route.params;
 
   const handleFortuneNumberClick = (answerNo: string) => {
     const answerResult = useFetchAnswer(questionNo, answerNo);
@@ -14,7 +24,7 @@ const PickNumber = ({route, navigation}: any): JSX.Element => {
         {
           text: 'အခြားမေးခွန်းများသို့',
           onPress: () => {
-            navigation.navigate('Home');
+            navigation.goBack();
           },
         },
         {
@@ -42,7 +52,7 @@ const PickNumber = ({route, navigation}: any): JSX.Element => {
       </View>
       <TouchableOpacity
         style={styles.backBtn}
-        onPress={() => navigation.canGoBack && navigation.goBack()}>
+        onPress={() => navigation.canGoBack() && navigation.goBack()}>
         <Text style={styles.backBtnText}>ပြန်သွားရန်</Text>
       </TouchableOpacity>
     </View>
@@ -101,4 +111,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PickNumber;
+export default PickNumberScreen;

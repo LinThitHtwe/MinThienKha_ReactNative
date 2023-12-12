@@ -13,7 +13,7 @@ const QuestionCard = ({
     <TouchableOpacity
       style={styles.card}
       onPress={() =>
-        navigation.navigate('PickNumber', {questionNo, questionName})
+        navigation.navigate('PickNumberScreen', {questionNo, questionName})
       }>
       <Text style={styles.cardText}>
         {questionNo} . {questionName}
